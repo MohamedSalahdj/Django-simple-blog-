@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
 
@@ -20,6 +20,8 @@ def new_post(request):
             form = form.save(commit= False)
             form.author = request.user
             form.save()
+            return redirect('/blogpost/')
+
     else:
         form = PostForm()
 
@@ -34,8 +36,15 @@ def adit_Post(request, id):
             form = form.save(commit=False)
             form.author = request.user
             form.save()
+            return redirect('/blogpost/')
+
     else:
         form = PostForm(instance = post)
 
     context = {'form':form}
     return render(request, 'edit_post.html',context)
+
+def delete_post(request, id):
+    post = Post.objects.get(id =id)
+    post.delete()
+    return redirect('/blogpost/')
