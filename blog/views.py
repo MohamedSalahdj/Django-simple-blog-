@@ -26,3 +26,16 @@ def new_post(request):
     context = {'form':form}
     return render(request,'new_post.html',context)
 
+def adit_Post(request, id):
+    post = Post.objects.get(id = id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.author = request.user
+            form.save()
+    else:
+        form = PostForm(instance = post)
+
+    context = {'form':form}
+    return render(request, 'edit_post.html',context)
