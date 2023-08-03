@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
+from django.views.generic import ListView
 
-def post_list(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
-    return render(request,'post_list.html',context)
+# def post_list(request): # QUERY , TEMPLATE , CONTEXT  
+#     posts = Post.objects.all()
+#     context = {'posts': posts}
+#     return render(request,'post_list.html',context)
+
+class PostList(ListView):
+    model = Post  # template ==> model_list && context ==> model_List , object_list   
 
 
 def post_details(request,id):
