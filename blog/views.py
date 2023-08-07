@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 # def post_list(request): # QUERY , TEMPLATE , CONTEXT  
 #     posts = Post.objects.all()
@@ -12,10 +12,13 @@ class PostList(ListView):
     model = Post  # template ==> model_list && context ==> model_List , object_list   
 
 
-def post_details(request,id):
-    post = Post.objects.get(id=id)
-    context = {'post':post}
-    return render(request,'post_details.html',context)
+# def post_details(request,id):
+#     post = Post.objects.get(id=id)
+#     context = {'post':post}
+#     return render(request,'post_details.html',context)
+
+class Postdetails(DetailView):
+    model = Post          # context ==> model-name OR object
 
 def new_post(request):
     if request.method == 'POST':
