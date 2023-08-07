@@ -18,7 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from blog.views import PostList,Postdetails,CreatePOST,UpdatePost,delete_post
+from blog.views import PostList,Postdetails,CreatePOST,UpdatePost,DeletePost
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +26,7 @@ urlpatterns = [
     path('blogpost/<int:pk>/',Postdetails.as_view()),
     path('blogpost/newpost/',CreatePOST.as_view()),
     path('blogpost/<int:pk>/edit/',UpdatePost.as_view()),
-    path('blogpost/<int:id>/delete/',delete_post),
+    path('blogpost/<int:pk>/delete/',DeletePost.as_view()),
 ]
 
 urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

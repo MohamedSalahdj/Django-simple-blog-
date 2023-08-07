@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
-from django.views.generic import ListView, DetailView,CreateView,UpdateView
+from django.views.generic import ListView, DetailView,CreateView,UpdateView,DeleteView
 
 # def post_list(request): # QUERY , TEMPLATE , CONTEXT  
 #     posts = Post.objects.all()
@@ -66,10 +66,14 @@ class UpdatePost(UpdateView):
     success_url = '/blogpost/'
     template_name = "blog/edit_post.html"	
 
-
+"""
 def delete_post(request, id):
     post = Post.objects.get(id =id)
     post.delete()
     return redirect('/blogpost/')
+"""
 
+class DeletePost(DeleteView):
+    model = Post
+    success_url = '/blogpost/'
 
