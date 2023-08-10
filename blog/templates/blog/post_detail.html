@@ -8,4 +8,20 @@
         <p>{{post.content}}</p>
     <p><i>{{post.author}}</i></p>
 </diV>
+<hr>
+<h2>Comments</h2>
+<ul style="padding: 0; margin: 0;text-align: left;">
+    {% for comment in comments %}
+    <li>
+        <p>- <strong>{{comment}}</strong> : {{comment.comment_content}} </p>
+    </li>
+    {%endfor%}
+</ul>
+<hr>
+<h3>ADD Comment</h3>
+<form method="POST" >
+    {% csrf_token %}
+    {{form}}<br>
+    <input type="submit" value="Comment Now">
+</form>
 </div>

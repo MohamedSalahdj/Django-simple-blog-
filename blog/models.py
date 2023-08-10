@@ -23,4 +23,5 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_user')
 
     def __str__(self):
-        return self.user.username # str(self.user)
+        # return self.user.username # str(self.user)
+        return str(self.user)
