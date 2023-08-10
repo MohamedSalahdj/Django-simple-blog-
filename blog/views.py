@@ -25,9 +25,9 @@ def new_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form = form.save(commit= False)
+            form = form.save(commit= False) # save in memory and need it to add other fields before saving all data in db
             form.author = request.user
-            form.save()
+            form.save() # this save in DB
             return redirect('/blogpost/')
 
     else:

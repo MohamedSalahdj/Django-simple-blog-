@@ -3,7 +3,7 @@
     {% for post in post_list %}
     <ul style="list-style-type: none; margin: 0; padding: 0;">
         <li>
-            <a href="" style="display: block;text-decoration: none;"> {{post}} </a>
+            <a href="{{post.id}}" style="display: block;text-decoration: none;"> {{post}} </a>
         </li>
     </ul>
     {% endfor %}
