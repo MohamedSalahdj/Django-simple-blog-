@@ -9,6 +9,13 @@
     <p><i>{{post.author}}</i></p>
 </diV>
 <hr>
+<h2>Tages Of this Post</h2>
+ <div>
+    {% for tage in post.tags.all %}
+        <strong> - {{tage}} </strong> <br>
+    {% endfor %}
+ </div>
+<hr>
 <h2>Comments</h2>
 <ul style="padding: 0; margin: 0;text-align: left;">
     {% for comment in comments %}
