@@ -1,20 +1,40 @@
-<div  style="text-align: center;">
-    <h1> Post details </h1>
-    <diV >
-        <h2 style="color: blue;">{{post}}</h2>
-        {% if post.image %}
-            <img src="{{post.image.url}}" alt="{{post}}" width="100px" height="100px">
-        {% endif %}
-        <p>{{post.content|safe}}</p>
-    <p><i>{{post.author}}</i></p>
-</diV>
-<hr>
-<h2>Tages Of this Post</h2>
- <div>
-    {% for tage in post.tags.all %}
-        <strong> - {{tage}} </strong> <br>
-    {% endfor %}
- </div>
+{% load django_bootstrap5 %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Medium</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+{% comment %} <div class="collapse navbar-collapse" id="navbarSupportedContent"> {% endcomment %}
+                <a class="btn btn-info" href="blogpost/newpost/">Create New Post</a>
+{% comment %} </div> {% endcomment %}
+        </div>
+      </nav>
+      <div class="container mt-5">
+        <div class="row py-3">
+            <div class="col-lg- mx-auto">
+                {% if post.image %}
+                    <img src="{{post.image.url}}" alt="{{post}}" width="100px" height="100px">
+                {% endif %}
+                <h1 style="color: blue;">{{post}}</h1>
+                <p>{{post.created_date}} - <i>{{post.author}}</i></p>
+                <a href="edit" class="btn btn-secondary">Edit Post</a>
+                <a href="/blogpost/{{post.id}}/delete" class="btn btn-danger">Delete Post</a>
+                <ul>
+                {% for tage in post.tags.all %}
+                    <li>{{tage}}</li>
+                {% endfor %}
+                </ul>
+                <p>{{post.content|safe}}</p>
 <hr>
 <h2>Comments</h2>
 <ul style="padding: 0; margin: 0;text-align: left;">
@@ -26,9 +46,51 @@
 </ul>
 <hr>
 <h3>ADD Comment</h3>
-<form method="POST" >
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form}}<br>
-    <input type="submit" value="Comment Now">
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="ADD NEW Comment" %}   
 </form>
 </div>
+
+            </div>
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
