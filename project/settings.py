@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "taggit",
     'blog',
     "django_bootstrap5",
+    'django_summernote',
 
     
 

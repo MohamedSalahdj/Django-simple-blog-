@@ -17,11 +17,12 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from blog.views import PostList,post_details,CreatePOST,UpdatePost,DeletePost
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
     path('blogpost/',PostList.as_view()),
     path('blogpost/<int:pk>/',post_details),
     path('blogpost/newpost/',CreatePOST.as_view()),

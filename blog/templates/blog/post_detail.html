@@ -5,7 +5,7 @@
         {% if post.image %}
             <img src="{{post.image.url}}" alt="{{post}}" width="100px" height="100px">
         {% endif %}
-        <p>{{post.content}}</p>
+        <p>{{post.content|safe}}</p>
     <p><i>{{post.author}}</i></p>
 </diV>
 <hr>
